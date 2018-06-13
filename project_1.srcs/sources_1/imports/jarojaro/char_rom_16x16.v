@@ -8,16 +8,42 @@
 
 module char_rom_16x16(
     input wire [7:0] char_xy,
-    input wire [9:0] result_0,
-    input wire [9:0] result_1,
+    input wire [9:0] result,
+    input wire clk,
+    input wire rst,
     output reg [6:0] char_code
     );
+      
+    reg [7:0] first=0, second=0;
+    reg [7:0] first_nxt=0, second_nxt=0;
         
+        
+        always @(posedge clk) begin 
+        if(rst) begin
+            first = 0;
+            second = 0;
+            end
+        else
+           begin
+           first <= first_nxt;
+           second <= second_nxt;
+        end
+        end    
    
+   
+    always @* 
+          begin
+             first_nxt = (result/2) % 10 + 'h30;
+             second_nxt = result/20 + 'h30;
+          end
+          
+          
     //16 characters allowed in each line
     reg [0:127] line0   = "   WYNIK:       ";
+   /*
     reg [0:127] line1   = "  Jaroslawski   "; 
     reg [0:127] line2   = "Mikroelektronika";
+   
     reg [0:127] line3   = "        1       ";
     reg [0:127] line4   = "        2       ";
     reg [0:127] line5   = "        3       ";
@@ -31,7 +57,9 @@ module char_rom_16x16(
     reg [0:127] line13  = "       11       ";
     reg [0:127] line14  = "       12       ";
     reg [0:127] line15  = "       13       ";
+   */ 
     
+   
     always @*
         if (char_xy[3:0] == 0)      //zerowa linijka
             case (char_xy[7:4])
@@ -45,8 +73,8 @@ module char_rom_16x16(
                 7:  char_code = line0[56:63];
                 8:  char_code = line0[64:71];
                 9:  char_code = line0[72:79];
-                10:  char_code = result_0 + 48;
-                11:  char_code = result_1 + 48;
+                10:  char_code = second;
+                11:  char_code = first;
                 12:  char_code = line0[96:103];
                 13:  char_code = line0[104:111];
                 14:  char_code = line0[112:119];
@@ -54,7 +82,7 @@ module char_rom_16x16(
                 default:
                 char_code =7'h45;
             endcase
-        
+    /*    
         else if (char_xy[3:0] == 1) //pierwsza linijka
             case (char_xy[7:4])
                 0:  char_code = line1[0:7];
@@ -361,6 +389,7 @@ module char_rom_16x16(
                 15:  char_code = line14[120:127];
                 default:
                 char_code =7'h45; 
+                
             endcase
         
         else if (char_xy[3:0] == 15) //pietnasta linijka
@@ -383,7 +412,9 @@ module char_rom_16x16(
                 15:  char_code = line15[120:127];
                 default:
                 char_code =7'h45;  
+               
             endcase
+            */
          else  
                 char_code =7'h45;
     endmodule

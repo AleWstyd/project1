@@ -37,7 +37,7 @@ module vga_module(
 
 
     localparam  HOLE_SIZE = 40;
-    localparam  HOLE_1_Y = 135;
+    localparam  HOLE_1_Y = 135;  
     localparam  HOLE_1_X = 185;
         
     localparam HOLE_2_Y = 285;
@@ -100,6 +100,7 @@ module vga_module(
     .hsync_in(hsync),
     .hblnk_in(hblnk),
     .pclk(clk40),
+    .rst(rst),
     
     .hcount_out(hcount_out_b),
     .hsync_out(hsync_out_b),
@@ -148,6 +149,7 @@ module vga_module(
           .ypos_in(ypos),
           .mouseleft_in(left),
           .clk(clk40),
+          .rst(rst),
           
           .xpos_out(xpos_buff),
           .ypos_out(ypos_buff),
@@ -164,7 +166,7 @@ module vga_module(
        wire [3:0] char_line;
        wire [6:0] char_code;
        wire [10:0] addr;
-       wire [9:0] result_1,result_0;
+       wire [9:0] result;
        
        draw_rect_char # (
          .X_UP_LEFT_CORNER(680),
@@ -180,6 +182,7 @@ module vga_module(
          .vblnk_in(vblnk_out),
          .rgb_in(rgb_out),
          .char_pixels(char_pixels),
+         .rst(rst),
          
          .hcount_out(hcount_out_c),
          .hsync_out(hs),
@@ -194,8 +197,9 @@ module vga_module(
       
        char_rom_16x16 my_char_rom_16x16(
          .char_xy(char_xy),
-         .result_1(result_1),
-         .result_0(result_0),
+         .result(result),
+         .clk(clk40),
+         .rst(rst),
          .char_code(char_code)
        );
        
@@ -279,8 +283,7 @@ module vga_module(
                  .xpos_out(xpos_k),
                  .ypos_out(ypos_k),
                  .random_number(random_number),
-                 .result_1(result_1),
-                 .result_0(result_0)
+                 .result(result)
 
                
                  );
