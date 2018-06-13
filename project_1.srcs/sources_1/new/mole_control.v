@@ -49,7 +49,7 @@ module mole_control(
             random_number_nxt = random_number + random_number_previous - (600 - OBJECT_WIDTH);
         else
             random_number_nxt = random_number + random_number_previous;
-        if(random_number_nxt == 0) // to avoid stable position
+        if(random_number_nxt == 0)
             random_number_nxt = 1;
     end
     

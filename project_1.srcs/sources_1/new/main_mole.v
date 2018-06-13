@@ -45,26 +45,25 @@ module main_mole
     
     input wire [9:0] random_number,
     output reg [11:0] xpos_out,
-    output reg [11:0] ypos_out
+    output reg [11:0] ypos_out,
+    output reg [9:0] result_0,
+    output reg [9:0] result_1
     );
 
 
-    
+reg [9:0] result, result_nxt = 0;  
 reg     next, delayed;
 reg  [11:0]   xpos_nxt,ypos_nxt;
 reg [9:0] random,random_nxt;
 reg [30:0]  delay=0, delay_nxt=0; 
-
+reg [30:0] delay_wait, delay_wait_nxt;
+reg [30:0] delay_show, delay_show_nxt;
     
 reg [2:0]   state = 1'b0, 
             state_nxt = 1'b0;  
             
 localparam MOLE1_X = HOLE_1_X + ((HOLE_SIZE - MOLE_WIDTH)/2),
-           MOLE2_X = HOLE_2_X + ((HOLE_SIZE - MOLE_WIDTH)/2),
-           MOLE3_X = HOLE_3_X + ((HOLE_SIZE - MOLE_WIDTH)/2),
-           MOLE1_Y = HOLE_1_Y  - MOLE_WIDTH/2,
-           MOLE2_Y = HOLE_2_Y - ((HOLE_SIZE - MOLE_WIDTH)/2),
-           MOLE3_Y = HOLE_3_Y - ((HOLE_SIZE - MOLE_WIDTH)/2);
+           MOLE1_Y = HOLE_1_Y  + 25;
            
                 
 localparam   SHOW = 1'b1,
@@ -75,14 +74,31 @@ localparam   SHOW = 1'b1,
     
         localparam  DELAY_1_MS    = 40_000;
         
-        localparam DELAY_INIT = 2500 * DELAY_1_MS;
+        localparam DELAY_SHOW = 50 * DELAY_1_MS;
+        
+        localparam DELAY_WAIT = 30 * DELAY_1_MS;
+        
+        localparam DELAY = 2000 * DELAY_1_MS;
         
         
-        
+initial begin
+      delay_wait = 1000 * DELAY_1_MS;
+      delay_show = 2000 * DELAY_1_MS;
+     end
+         
     always @(posedge clk) begin
            if(rst) 
               begin 
                  state <= 2'b00; 
+                 delay <= 0;
+                 random <=0;
+                 xpos_out <= 900;
+                 ypos_out <= 800;
+                 delay_show <= 0;
+                 delay_wait <= 0;
+                 result <= 0;
+                 result_0 <= 0;
+                 result_1 <= 0;
               end
             else
               begin
@@ -91,6 +107,11 @@ localparam   SHOW = 1'b1,
                 random <=random_nxt;
                 xpos_out <= xpos_nxt;
                 ypos_out <= ypos_nxt;
+                delay_show <= delay_show_nxt;
+                delay_wait <= delay_wait_nxt;
+                result <= result_nxt;
+                result_0 <= (result/10)/2;
+                result_1 <= (result%10)/2;
              end
             end
     
@@ -116,24 +137,27 @@ localparam   SHOW = 1'b1,
                     delay_nxt = delay + 1; 
                     xpos_nxt = MOLE1_X + (200 * ((random-random%3)/3));
                     ypos_nxt = MOLE1_Y + (150 * (random%3));
-                    if(delay>=DELAY_INIT)begin
+                    if(delay>=DELAY)begin
                         delay_nxt=0;
                         next=1;
+                        delay_show_nxt <= delay_show - DELAY_SHOW;
                     end 
                     else if (left == 1 && (xpos > xpos_out) && (xpos < (xpos_out + MOLE_WIDTH)) && (ypos < ypos_out) &&  (ypos > (ypos_out - MOLE_HEIGHT))) begin
                         delay_nxt = 0;
                         next = 1;
+                        result_nxt = (result +1);
                         end
                      end    
                                     
              WAIT: begin
              delay_nxt = delay + 1; 
-             xpos_nxt = 800;
+             xpos_nxt = 900;
              ypos_nxt= 800;
              random_nxt = random_number%9;
-                if(delay>=DELAY_INIT)begin
+                if(delay>=DELAY)begin
                 delay_nxt=0;
                 delayed=1;
+                delay_wait_nxt <= delay_wait -DELAY_WAIT;
                 end 
                     end
             

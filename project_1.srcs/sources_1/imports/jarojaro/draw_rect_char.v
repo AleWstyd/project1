@@ -36,6 +36,8 @@ module draw_rect_char
     input wire vblnk_in,
     input wire [11:0] rgb_in,
     input wire [7:0] char_pixels,
+    input wire rst,
+    
     output reg [10:0] hcount_out,
     output reg hsync_out,
     output reg hblnk_out,
@@ -49,7 +51,7 @@ module draw_rect_char
 //            localparam X_UP_LEFT_CORNER = 409;
 //            localparam Y_UP_LEFT_CORNER = 0;
     localparam X_RECT_SIZE = 128;
-    localparam Y_RECT_SIZE = 256;
+    localparam Y_RECT_SIZE = 16;
     reg [11:0] x_up_left_corner_to_draw=0, y_up_left_corner_to_draw=0;
    // localparam X = 0, Y=0;
     
@@ -61,7 +63,7 @@ module draw_rect_char
     reg vblnk_in_1, vblnk_in_2, vblnk_in_3;
     reg [11:0] rgb_in_1, rgb_in_2, rgb_in_3;
     
-    reg [11:0] rgb_out_nxt = 12'h8_8_8; //grey background
+    reg [11:0] rgb_out_nxt = 12'h0_a_0; //grey background
     reg [7:0] char_xy_nxt;
     reg [3:0] char_line_nxt;
     
@@ -93,15 +95,30 @@ always @(posedge pclk)
 
     always @(posedge pclk)
     begin  
-        hsync_out <= hsync_in_2;
-        vsync_out <= vsync_in_2;
-        hblnk_out <= hblnk_in_2;
-        vblnk_out <= vblnk_in_2;
-        hcount_out <= hcount_in_2;
-        vcount_out <= vcount_in_2;
-        rgb_out <= rgb_out_nxt;
-        char_xy <= char_xy_nxt;
-        char_line <= char_line_nxt;
+      if (rst)
+       begin
+        hsync_out <= 0;
+        vsync_out <= 0;
+        hblnk_out <= 0;
+        vblnk_out <= 0;
+        hcount_out <= 0;
+        vcount_out <= 0;
+        rgb_out <= 0;
+        char_xy <= 0;
+        char_line <= 0;
+         end
+      else 
+          begin
+              hsync_out <= hsync_in_2;
+              vsync_out <= vsync_in_2;
+              hblnk_out <= hblnk_in_2;
+              vblnk_out <= vblnk_in_2;
+              hcount_out <= hcount_in_2;
+              vcount_out <= vcount_in_2;
+              rgb_out <= rgb_out_nxt;
+              char_xy <= char_xy_nxt;
+              char_line <= char_line_nxt;
+           end
     end
     
     always @*
@@ -119,7 +136,7 @@ always @(posedge pclk)
                 else if (hcount_in_2 % 8 == 2 && char_pixels[5]) rgb_out_nxt = 12'hf00;
                 else if (hcount_in_2 % 8 == 1 && char_pixels[6]) rgb_out_nxt = 12'hf00; 
                 else if (hcount_in_2 % 8 == 0 && char_pixels[7]) rgb_out_nxt = 12'hf00;
-                else rgb_out_nxt = 12'h444;   
+                else rgb_out_nxt = 12'h0_a_0;   
             else
                 rgb_out_nxt = rgb_in_2;
         else
