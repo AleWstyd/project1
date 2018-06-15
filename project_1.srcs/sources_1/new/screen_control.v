@@ -130,7 +130,7 @@ always @* begin
                 hsync_out_nxt <= hsync_in_start ;
                 vsync_out_nxt <= vsync_in_start ;
                 rgb_out_nxt <=  rgb_in_start;
-                game_enable_nxt <= 0;
+                game_enable_nxt <= 1;
             end
         GAME:
             begin
@@ -141,7 +141,7 @@ always @* begin
                 hsync_out_nxt <= hsync_in_game ;
                 vsync_out_nxt <= vsync_in_game ;
                 rgb_out_nxt <=  rgb_in_game;
-                game_enable_nxt <= 1;
+                game_enable_nxt <= 0;
             end
         END:
             begin
@@ -152,7 +152,7 @@ always @* begin
                 hsync_out_nxt <= hsync_in_end ;
                 vsync_out_nxt <= vsync_in_end ;
                 rgb_out_nxt <=  rgb_in_end;
-                game_enable_nxt <= 0;
+                game_enable_nxt <= 1;
             end
         default:
             begin
@@ -163,7 +163,7 @@ always @* begin
                 hsync_out_nxt <= hsync_in_start ;
                 vsync_out_nxt <= vsync_in_start ;
                 rgb_out_nxt <=  rgb_in_start;
-                game_enable_nxt <= 0;
+                game_enable_nxt <= 1;
              end 
              
     endcase

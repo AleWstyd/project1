@@ -102,7 +102,7 @@ wire game_enable;
   
 game_module my_game ( 
     .clk40(clk40),  
-	.rst(rst),  
+	.rst(game_enable),  
 	.xpos(xpos),
     .ypos(ypos),
     .left(left), 
@@ -119,8 +119,8 @@ game_module my_game (
     .vcount_out(vcount_out_game),
     .vblnk_out(vblnk_out_game),
     .rgb_out(rgb_out_game),
-    .vs(vs),
-    .hs(hs)
+    .vs(vsync_out_game),
+    .hs(hsync_out_game)
  );
 
 ////////////////////////////////////////////////////////
@@ -218,8 +218,8 @@ draw_end my_end (
      .vcount_out(vcount_out),
      .hblnk_out(hblnk_out),
      .vblnk_out(vblnk_out),
-     .hsync_out(hsync_out),
-     .vsync_out(vsync_out),
+     .hsync_out(hs),
+     .vsync_out(vs),
      .rgb_out(rgb_out),
      
      .game_enable(game_enable)
@@ -243,7 +243,7 @@ draw_end my_end (
           .red_in(rgb_out [11:8]),
           .green_in(rgb_out[7:4]),
           .blue_in(rgb_out[3:0]),
-          .blank(hblnk_out_game || vblnk_out),
+          .blank(hblnk_out || vblnk_out),
           .hcount({1'b0,hcount_out+1}),
           .vcount({1'b0,vcount_out}),
           
