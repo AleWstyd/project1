@@ -41,15 +41,15 @@ module main_mole
     input wire [11:0] xpos,
     input wire [11:0] ypos,
     input wire left,
-    
-    
     input wire [9:0] random_number,
+    
+    output reg end_game,
     output reg [11:0] xpos_out,
     output reg [11:0] ypos_out,
     output reg [9:0] result
     );
 
-
+reg end_game_nxt = 0;
 reg [9:0] result_nxt = 0;  
 reg     next, delayed;
 reg  [11:0]   xpos_nxt,ypos_nxt;
@@ -101,6 +101,7 @@ localparam   SHOW = 1'b1,
                  delay_show <= 0;
                  delay_wait <= 0;
                  result <= 0;
+                 end_game <= 0;
                  
               end
             else
@@ -113,6 +114,8 @@ localparam   SHOW = 1'b1,
                 delay_show <= delay_show_nxt;
                 delay_wait <= delay_wait_nxt;
                 result <= result_nxt;
+                end_game <= end_game_nxt;
+                                 
              end
             end
     
@@ -140,13 +143,14 @@ localparam   SHOW = 1'b1,
                     ypos_nxt = MOLE1_Y + (150 * (random%3));
                     if(delay>=delay_show)begin
                         delay_nxt=0;
-                        next=1;
-                        if (delay_show >= DELAY_SHOW_MIN) delay_show_nxt <= delay_show - DELAY_SHOW;
+                        end_game_nxt =0;
+                        
                     end 
                     else if (left == 1 && (xpos > xpos_out) && (xpos < (xpos_out + MOLE_WIDTH)) && (ypos < ypos_out) &&  (ypos > (ypos_out - MOLE_HEIGHT))) begin
                         delay_nxt = 0;
                         next = 1;
                         result_nxt = (result +1);
+                        if (delay_show >= DELAY_SHOW_MIN) delay_show_nxt <= delay_show - DELAY_SHOW;
                         end
                      end    
                                     

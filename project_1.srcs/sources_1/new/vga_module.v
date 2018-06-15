@@ -26,8 +26,15 @@ module game_module(
 	input wire [11:0] xpos,
     input wire [11:0] ypos,
     input wire left, 
+    
+    input wire [10:0] vcount,
+    input wire [10:0] hcount,
+    input wire vsync, 
+    input wire hsync,
+    input wire vblnk, 
+    input wire hblnk,
 
-
+    output wire end_game,
     output wire [10:0] hcount_out,
     output wire hs,
     output wire hblnk_out,
@@ -50,31 +57,11 @@ module game_module(
     localparam HOLE_3_Y = 435;
     localparam HOLE_3_X = 585;
         
-    localparam MOLE_HEIGHT = 60;
-    localparam MOLE_WIDTH = 30;
+    localparam MOLE_HEIGHT = 64;
+    localparam MOLE_WIDTH = 32;
     localparam MOLE_COLOUR = 12'h6_2_0;
     
     
-////////////////////////////////////////////////////////
-  //////////       timing module           ///////////////
-  ////////////////////////////////////////////////////////
-
-  wire [10:0] vcount, hcount;
-  wire vsync, hsync;
-  wire vblnk, hblnk;
-
-  vga_timing my_timing (
-    .clk(clk40),
-    .rst(rst),
-    
-    .vcount(vcount),
-    .vsync(vsync),
-    .vblnk(vblnk),
-    .hcount(hcount),
-    .hsync(hsync),
-    .hblnk(hblnk)
-    
-  );
 
 ////////////////////////////////////////////////////////////
 //////////       background module           ///////////////
@@ -189,10 +176,10 @@ module game_module(
                       
       image_rom # (
               .FILE_PATH("C:/Users/Mikolaj/Desktop/obrazki/test.data"),
-              .X_WIDTH(6),
-              .Y_WIDTH(5)
+              .X_WIDTH(5),
+              .Y_WIDTH(6)
             )
-           ship_rom(     
+           mole_rom(     
          .clk(clk40),
          .address(address),
          .rgb(rgb_pixel)
@@ -205,12 +192,8 @@ module game_module(
                
                   
    draw_moles  # (
-            
-            .MOLE_HEIGHT(MOLE_HEIGHT), 
-            .MOLE_WIDTH(MOLE_WIDTH),
-            .MOLE_COLOUR(MOLE_COLOUR),
-             .X_WIDTH(6),
-             .Y_WIDTH(5)
+             .X_WIDTH(5),
+             .Y_WIDTH(6)
             )
          my_moles(
         .clk(clk40),
@@ -277,6 +260,7 @@ module game_module(
                  .left(left),
                  .random_number(random_number),
                  
+                 .end_game(end_game),
                  .xpos_out(xpos_k),
                  .ypos_out(ypos_k),
                  .result(result)

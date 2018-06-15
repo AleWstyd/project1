@@ -22,11 +22,6 @@
 
 module draw_moles
     # ( parameter
-
-         MOLE_HEIGHT = 60,
-         MOLE_WIDTH = 30,
-         MOLE_COLOUR = 12'h6_2_0,
-         
          X_WIDTH = 6,
          Y_WIDTH = 6 
     )
@@ -57,42 +52,87 @@ module draw_moles
 
     );
 
-reg [11:0] rgb_nxt;
+reg [10:0]  hcount_nxt1=0, vcount_nxt1=0,hcount_nxt2=0, vcount_nxt2=0;
+reg         hsync_nxt1=0, hblnk_nxt1=0, vsync_nxt1=0, vblnk_nxt1=0, 
+            hsync_nxt2=0, hblnk_nxt2=0, vsync_nxt2=0, vblnk_nxt2=0;
+            
+reg [11:0]  rgb_out_nxt = 0, rgb_in_nxt1 = 0, rgb_in_nxt = 0;
 
 reg [X_WIDTH-1:0]   addr_X;
 reg [Y_WIDTH-1:0]   addr_Y;
 
+localparam         WIDTH = 2 ** X_WIDTH ;
+localparam		   HEIGHT = 2 ** Y_WIDTH;
 
 always @(posedge clk) begin
-       if(rst) 
-          begin 
-             hcount_out <= 11'b0;
-             hsync_out <= 1'b0;
-             hblnk_out <=  1'b0; 
-             vcount_out <=  11'b0;
-             vsync_out <= 1'b0;
-             vblnk_out <= 1'b0;
-             rgb_out <=  11'b0;
-          end
-        else
-          begin
-            hcount_out <= hcount_in;
-            hsync_out <= hsync_in;
-            hblnk_out <=  hblnk_in; 
-            vcount_out <=  vcount_in;
-            vsync_out <= vsync_in;
-            vblnk_out <= vblnk_in;
-            rgb_out <=  rgb_nxt;
-         end
-        end
+     if(rst) begin
+      hcount_nxt1  <= 11'b0;
+      vcount_nxt1  <= 11'b0;    
+      hsync_nxt1   <= 1'b0;
+      vsync_nxt1   <= 1'b0;
+      hblnk_nxt1   <= 1'b0;
+      vblnk_nxt1   <= 1'b0;
+      
+      hcount_nxt2  <= 11'b0;
+      vcount_nxt2  <= 11'b0;      
+      hsync_nxt2   <= 1'b0;
+      vsync_nxt2   <= 1'b0;
+      hblnk_nxt2   <= 1'b0;
+      vblnk_nxt2   <= 1'b0;
+      
+      hcount_out  <= 11'b0;
+      vcount_out  <= 11'b0;
+      hsync_out   <= 1'b0;
+      vsync_out   <= 1'b0;
+      hblnk_out   <= 1'b0;
+      vblnk_out   <= 1'b0;
+      
+      rgb_out     <= 12'b0;
+      
+      rgb_in_nxt1 <= 12'b0;
+      rgb_in_nxt  <= 12'b0;
+      pixel_addr  <= 16'b0;
+     
+     end
+     
+     else begin
+        // Just pass these through.
+        hcount_nxt1  <= hcount_in;
+        vcount_nxt1  <= vcount_in;      
+        hsync_nxt1   <= hsync_in;
+        vsync_nxt1   <= vsync_in;
+        hblnk_nxt1   <= hblnk_in;
+        vblnk_nxt1   <= vblnk_in;
+        
+        hcount_nxt2  <= hcount_nxt1;
+        vcount_nxt2  <= vcount_nxt1;      
+        hsync_nxt2   <= hsync_nxt1;
+        vsync_nxt2   <= vsync_nxt1;
+        hblnk_nxt2   <= hblnk_nxt1;
+        vblnk_nxt2   <= vblnk_nxt1;
+        
+        hcount_out  <= hcount_nxt2;
+        vcount_out  <= vcount_nxt2;      
+        hsync_out   <= hsync_nxt2;
+        vsync_out   <= vsync_nxt2;
+        hblnk_out   <= hblnk_nxt2;
+        vblnk_out   <= vblnk_nxt2;
+        
+        rgb_out     <= rgb_out_nxt;
+    
+        rgb_in_nxt1 <= rgb_in_nxt;
+        rgb_in_nxt  <= rgb_in;
+        pixel_addr  <= {addr_Y,addr_X};
+     end
+  end
         
  
  always @*
               begin
               addr_X = hcount_in - xpos;
               addr_Y = vcount_in - ypos;
-               if (hcount_in > xpos && hcount_in < xpos + MOLE_WIDTH && vcount_in > ypos - MOLE_HEIGHT && vcount_in < ypos ) rgb_nxt <= rgb_pixel;
-               else   rgb_nxt <= rgb_in; 
+               if (hcount_in > xpos && hcount_in < xpos + WIDTH && vcount_in > ypos - HEIGHT && vcount_in < ypos ) rgb_out_nxt <= rgb_pixel;
+               else   rgb_out_nxt <= rgb_in_nxt1; 
                                  
  
              end

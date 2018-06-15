@@ -128,14 +128,14 @@ always @(posedge pclk)
               
         if (vcount_in_2 >= y_up_left_corner_to_draw && vcount_in_2 < y_up_left_corner_to_draw+Y_RECT_SIZE)
             if (hcount_in_2 >= x_up_left_corner_to_draw && hcount_in_2 < x_up_left_corner_to_draw+X_RECT_SIZE)                 
-                if (hcount_in_2 % 8 == 7 && char_pixels[0]) rgb_out_nxt = 12'hf00;
-                else if (hcount_in_2 % 8 == 6 && char_pixels[1]) rgb_out_nxt = 12'hf00;
-                else if (hcount_in_2 % 8 == 5 && char_pixels[2]) rgb_out_nxt = 12'hf00; 
-                else if (hcount_in_2 % 8 == 4 && char_pixels[3]) rgb_out_nxt = 12'hf00; 
-                else if (hcount_in_2 % 8 == 3 && char_pixels[4]) rgb_out_nxt = 12'hf00; 
-                else if (hcount_in_2 % 8 == 2 && char_pixels[5]) rgb_out_nxt = 12'hf00;
-                else if (hcount_in_2 % 8 == 1 && char_pixels[6]) rgb_out_nxt = 12'hf00; 
-                else if (hcount_in_2 % 8 == 0 && char_pixels[7]) rgb_out_nxt = 12'hf00;
+                if (hcount_in_2 % 8 == 7 && char_pixels[0]) rgb_out_nxt = 12'h000;
+                else if (hcount_in_2 % 8 == 6 && char_pixels[1]) rgb_out_nxt = 12'h000;
+                else if (hcount_in_2 % 8 == 5 && char_pixels[2]) rgb_out_nxt = 12'h000; 
+                else if (hcount_in_2 % 8 == 4 && char_pixels[3]) rgb_out_nxt = 12'h000; 
+                else if (hcount_in_2 % 8 == 3 && char_pixels[4]) rgb_out_nxt = 12'h000; 
+                else if (hcount_in_2 % 8 == 2 && char_pixels[5]) rgb_out_nxt = 12'h000;
+                else if (hcount_in_2 % 8 == 1 && char_pixels[6]) rgb_out_nxt = 12'h000; 
+                else if (hcount_in_2 % 8 == 0 && char_pixels[7]) rgb_out_nxt = 12'h000;
                 else rgb_out_nxt = 12'h0_a_0;   
             else
                 rgb_out_nxt = rgb_in_2;
