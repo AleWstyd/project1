@@ -52,7 +52,14 @@ module draw_end(
     wire  vsync_out_d, hsync_out_d;
     wire  vblnk_out_d, hblnk_out_d;
     wire [11:0] rgb_out_d;
-    
+    wire [20:0] address_m1;
+    wire [7:0] temp_x;
+    wire [6:0] temp_y;
+   
+    assign temp_x = (address [8:0] - address [8:0] % 2)/2;
+    assign temp_y = (address [16:9] - address [16:9] % 2)/2;
+    assign address_m1 = {temp_y,temp_x};
+            
     
 ////////////////////////////////////////////////////////
 /////////      backrgound image rom      ///////////////
@@ -60,13 +67,13 @@ module draw_end(
               
                           
           image_rom # (
-                  .FILE_PATH("C:/Users/Mikolaj/Desktop/obrazki/test.data"),
-                  .X_WIDTH(6),
-                  .Y_WIDTH(5)
+                  .FILE_PATH("C:/Users/Mikolaj/Desktop/obrazki/gameover.data"),
+                  .X_WIDTH(8),
+                  .Y_WIDTH(7)
                 )
                end_rom(     
              .clk(clk40),
-             .address(address),
+             .address(address_m1),
              .rgb(rgb_pixel)
              );
       
@@ -77,11 +84,8 @@ module draw_end(
                    
                       
        draw_moles  # (
-                
-                .HEIGHT(200), 
-                .WIDTH(100),
-                 .X_WIDTH(6),
-                 .Y_WIDTH(5)
+                 .X_WIDTH(9),
+                 .Y_WIDTH(8)
                 )
              my_end_screen(
             .clk(clk40),
@@ -91,11 +95,11 @@ module draw_end(
             .vcount_in(vcount),
             .vsync_in(vsync),
             .vblnk_in(vblnk),
-            .rgb_in(12'b0),
+            .rgb_in(12'h0a0),
             .rst(rst),
             .rgb_pixel(rgb_pixel),
             .xpos('d160),
-            .ypos('d100),
+            .ypos('d114),
             
             .pixel_addr(address),
             .hcount_out(hcount_out_d),
@@ -120,8 +124,8 @@ module draw_end(
                    wire [9:0] result;
                    
                    draw_rect_char # (
-                     .X_UP_LEFT_CORNER(680),
-                     .Y_UP_LEFT_CORNER(1)
+                     .X_UP_LEFT_CORNER(336),
+                     .Y_UP_LEFT_CORNER(385)
                      )
                    my_draw_rect_char(
                      .pclk(clk40),
@@ -176,10 +180,10 @@ module draw_end(
   ////////////////////////////////////////////////////////  
   
   click_check #
-            (.X_UP_BOX (300),
-             .Y_UP_BOX(300),
-             .BOX_WIDTH (200),
-             .BOX_HEIGHT (100)
+            (.X_UP_BOX (306),
+             .Y_UP_BOX(294),
+             .BOX_WIDTH (150),
+             .BOX_HEIGHT (58)
               )
           my_end_click (
           .left(left),

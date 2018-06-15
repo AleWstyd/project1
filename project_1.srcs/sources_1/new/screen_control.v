@@ -65,7 +65,7 @@ module screen_control(
     
 localparam    START = 2'b00,
               GAME = 2'b01,
-              END = 2'b10;
+              END = 2'b11;
 
 
 
@@ -121,6 +121,7 @@ end
 
 always @* begin
     case(state_nxt)
+    
         START:
             begin
                 hcount_out_nxt <= hcount_in_start;
@@ -163,7 +164,7 @@ always @* begin
                 hsync_out_nxt <= hsync_in_start ;
                 vsync_out_nxt <= vsync_in_start ;
                 rgb_out_nxt <=  rgb_in_start;
-                game_enable_nxt <= 1;
+                game_enable_nxt <= 0;
              end 
              
     endcase

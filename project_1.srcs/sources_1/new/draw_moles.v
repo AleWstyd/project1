@@ -127,13 +127,13 @@ always @(posedge clk) begin
   end
         
  
- always @*
-              begin
-              addr_X = hcount_in - xpos;
-              addr_Y = vcount_in - ypos;
-               if (hcount_in > xpos && hcount_in < xpos + WIDTH && vcount_in > ypos - HEIGHT && vcount_in < ypos ) rgb_out_nxt <= rgb_pixel;
-               else   rgb_out_nxt <= rgb_in_nxt1; 
-                                 
- 
-             end
+  always @* begin
+         addr_X = hcount_in - xpos;
+         addr_Y = vcount_in - ypos;
+         rgb_out_nxt = rgb_in_nxt1;
+         if( (hcount_nxt2 >= xpos) && (hcount_nxt2 < xpos+WIDTH) && (vcount_nxt2 >= ypos) && (vcount_nxt2 < ypos+HEIGHT) && !(vblnk_nxt2 || hblnk_nxt2) ) begin
+             rgb_out_nxt = rgb_pixel;
+         end
+     end   
+      
  endmodule

@@ -47,6 +47,14 @@ module draw_menu(
     
     wire [20:0] address;  
     wire [11:0] rgb_pixel; 
+    wire [20:0] address_m1;
+    wire [7:0] temp_x;
+    wire [6:0] temp_y;
+   
+       
+        assign temp_x = (address [8:0] - address [8:0] % 2)/2;
+        assign temp_y = (address [16:9] - address [16:9] % 2)/2;
+        assign address_m1 = {temp_y,temp_x};
         
 ////////////////////////////////////////////////////////
 /////////      backrgound image rom      ///////////////
@@ -54,13 +62,13 @@ module draw_menu(
                   
                               
               image_rom # (
-                      .FILE_PATH("C:/Users/Mikolaj/Desktop/obrazki/test.data"),
-                      .X_WIDTH(6),
-                      .Y_WIDTH(5)
+                      .FILE_PATH("C:/Users/Mikolaj/Desktop/obrazki/mole1.data"),
+                      .X_WIDTH(8),
+                      .Y_WIDTH(7)
                     )
                    start_rom(     
                  .clk(clk40),
-                 .address(address),
+                 .address(address_m1),
                  .rgb(rgb_pixel)
                  );
           
@@ -71,11 +79,8 @@ module draw_menu(
                        
                           
            draw_moles  # (
-                    
-                    .HEIGHT(200), 
-                    .WIDTH(100),
-                     .X_WIDTH(6),
-                     .Y_WIDTH(5)
+                     .X_WIDTH(9),
+                     .Y_WIDTH(8)
                     )
                  my_menu_screen(
                 .clk(clk40),
@@ -85,11 +90,11 @@ module draw_menu(
                 .vcount_in(vcount),
                 .vsync_in(vsync),
                 .vblnk_in(vblnk),
-                .rgb_in(12'b0),
+                .rgb_in(12'h0a0),
                 .rst(rst),
                 .rgb_pixel(rgb_pixel),
                 .xpos('d160),
-                .ypos('d100),
+                .ypos('d172),
                 
                 .pixel_addr(address),
                 .hcount_out(hcount_out),
@@ -107,10 +112,10 @@ module draw_menu(
  ////////////////////////////////////////////////////////  
       
       click_check #
-                (.X_UP_BOX (300),
-                 .Y_UP_BOX(300),
-                 .BOX_WIDTH (200),
-                 .BOX_HEIGHT (100)
+                (.X_UP_BOX (306),
+                 .Y_UP_BOX(350),
+                 .BOX_WIDTH (150),
+                 .BOX_HEIGHT (58)
                   )
               my_start_click (
               .left(left),

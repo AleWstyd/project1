@@ -56,7 +56,7 @@ reg [2:0]   state = 2'b00,
             state_nxt = 2'b00;  
             
 localparam MOLE1_X = 180,
-           MOLE1_Y = HOLE_1_Y  + 22;
+           MOLE1_Y = HOLE_1_Y  - 44;
            
                 
 localparam   INIT = 2'b00,
@@ -76,16 +76,8 @@ localparam   INIT = 2'b00,
         
         localparam DELAY_WAIT_MIN = 500 * DELAY_1_MS;
         
-        localparam INIT_DELAY = 3000 * DELAY_1_MS;
+        localparam INIT_DELAY = 1500 * DELAY_1_MS;
         
-        
-   initial 
-            begin
-              delay_wait = 1000 * DELAY_1_MS;
-              delay_wait_nxt = 1000 * DELAY_1_MS;
-              delay_show = 2000 * DELAY_1_MS;
-              delay_show_nxt = 1500 * DELAY_1_MS;
-            end     
          
     always @(posedge clk) begin
            if(rst) 
@@ -95,8 +87,8 @@ localparam   INIT = 2'b00,
                  random <=10'b0;
                  xpos_out <= 900;
                  ypos_out <= 800;
-                 delay_show <= 31'b0;
-                 delay_wait <= 31'b0;
+                 delay_show <= 2000 * DELAY_1_MS;
+                 delay_wait <= 1000 * DELAY_1_MS;
                  result <= 10'b0;
                  end_game <= 1'b0;
                  
@@ -119,7 +111,7 @@ localparam   INIT = 2'b00,
     always @* begin
     
         case (state)
-            INIT:            state_nxt = ( start == 1 )     ?   SHOW: INIT;
+            INIT:            state_nxt = ( start == 1 )     ?   WAIT: INIT;
             SHOW:            state_nxt = ( next == 1 )      ?   WAIT: SHOW;
             WAIT:            state_nxt = ( delayed == 1  )  ?   SHOW: WAIT;
             default:         state_nxt =                        INIT;  
@@ -134,7 +126,7 @@ localparam   INIT = 2'b00,
         xpos_nxt = xpos_out;
         ypos_nxt =ypos_out;
         random_nxt = random;
-        
+        result_nxt=result;
         case (state)
             INIT:
                  begin
@@ -143,6 +135,8 @@ localparam   INIT = 2'b00,
                         ypos_nxt= 800;
                         end_game_nxt =0;
                         delay_nxt = delay + 1; 
+                        delay_wait_nxt = 1000 * DELAY_1_MS;
+                        delay_show_nxt = 2000 * DELAY_1_MS;
                         if(delay>=INIT_DELAY)
                                begin
                                   delay_nxt=0;
@@ -159,7 +153,7 @@ localparam   INIT = 2'b00,
                         delay_nxt=0;
                         end_game_nxt =1;
                       end 
-                    else if (left == 1 && (xpos > xpos_out) && (xpos < (xpos_out + MOLE_WIDTH)) && (ypos < ypos_out) &&  (ypos > (ypos_out - MOLE_HEIGHT))) begin
+                    else if (left == 1 && (xpos > xpos_out) && (xpos < (xpos_out + MOLE_WIDTH)) && (ypos < ypos_out +MOLE_HEIGHT) &&  (ypos > ypos_out) ) begin
                         delay_nxt = 0;
                         next = 1;
                         result_nxt = (result +1);

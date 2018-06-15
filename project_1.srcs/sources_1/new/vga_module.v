@@ -72,7 +72,7 @@ module game_module(
   wire vblnk_out_b, hblnk_out_b, vblnk_out_c, hblnk_out_c, vblnk_out_d, hblnk_out_d;
   wire [11:0] rgb_out_b, rgb_out_c, rgb_out_d;
 
-    draw_background # (
+    draw_holes # (
          .HOLE_SIZE(HOLE_SIZE),
          .HOLE_1_Y (HOLE_1_Y),
          .HOLE_1_X (HOLE_1_X),
@@ -175,7 +175,7 @@ module game_module(
           
                       
       image_rom # (
-              .FILE_PATH("C:/Users/Mikolaj/Desktop/obrazki/test.data"),
+              .FILE_PATH("C:/Users/Mikolaj/Desktop/obrazki/dicklett.data"),
               .X_WIDTH(5),
               .Y_WIDTH(6)
             )
