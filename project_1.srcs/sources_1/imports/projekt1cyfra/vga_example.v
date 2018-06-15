@@ -33,7 +33,6 @@ module vga_example (
 
 wire clk100;
 wire clk40;
-wire locked;
 
 
 clk_wiz_0   clk_main 
@@ -42,8 +41,8 @@ clk_wiz_0   clk_main
   .clk100MHz(clk100),
   .clk40Mhz(clk40),
   // Status and control signals
-  .reset(rst),
-  .locked(locked),
+  //.reset(rst),
+  //.locked(locked),
  // Clock in ports
   .clk(clk)
  );

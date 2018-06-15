@@ -33,8 +33,8 @@ module char_rom_16x16(
    
     always @* 
           begin
-             first_nxt = (result/2) % 10 + 'h30;
-             second_nxt = result/20 + 'h30;
+             first_nxt = (result/2) % 10 + 48;
+             second_nxt = result/20 + 48;
           end
           
           

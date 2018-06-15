@@ -55,8 +55,8 @@ reg     next, delayed;
 reg  [11:0]   xpos_nxt,ypos_nxt;
 reg [9:0] random,random_nxt;
 reg [30:0]  delay=0, delay_nxt=0; 
-reg [30:0] delay_wait = 0, delay_wait_nxt=0;
-reg [30:0] delay_show =0, delay_show_nxt=0;
+reg [30:0] delay_wait, delay_wait_nxt;
+reg [30:0] delay_show, delay_show_nxt;
     
 reg [2:0]   state = 1'b0, 
             state_nxt = 1'b0;  
@@ -73,12 +73,22 @@ localparam   SHOW = 1'b1,
     
         localparam  DELAY_1_MS    = 40_000;
         
-        localparam DELAY_SHOW = 50 * DELAY_1_MS;
+        localparam DELAY_SHOW = 30 * DELAY_1_MS;
         
-        localparam DELAY_WAIT = 30 * DELAY_1_MS;
+        localparam DELAY_WAIT = 20 * DELAY_1_MS;
         
-        localparam DELAY = 2000 * DELAY_1_MS;
+        localparam DELAY_SHOW_MIN = 800 * DELAY_1_MS;
         
+        localparam DELAY_WAIT_MIN = 500 * DELAY_1_MS;
+        
+        
+   initial 
+            begin
+              delay_wait = 1000 * DELAY_1_MS;
+              delay_wait_nxt = 1000 * DELAY_1_MS;
+              delay_show = 2000 * DELAY_1_MS;
+              delay_show_nxt = 1500 * DELAY_1_MS;
+            end     
          
     always @(posedge clk) begin
            if(rst) 
@@ -128,10 +138,10 @@ localparam   SHOW = 1'b1,
                     delay_nxt = delay + 1; 
                     xpos_nxt = MOLE1_X + (200 * ((random-random%3)/3));
                     ypos_nxt = MOLE1_Y + (150 * (random%3));
-                    if(delay>=DELAY)begin
+                    if(delay>=delay_show)begin
                         delay_nxt=0;
                         next=1;
-                        delay_show_nxt <= delay_show - DELAY_SHOW;
+                        if (delay_show >= DELAY_SHOW_MIN) delay_show_nxt <= delay_show - DELAY_SHOW;
                     end 
                     else if (left == 1 && (xpos > xpos_out) && (xpos < (xpos_out + MOLE_WIDTH)) && (ypos < ypos_out) &&  (ypos > (ypos_out - MOLE_HEIGHT))) begin
                         delay_nxt = 0;
@@ -145,10 +155,10 @@ localparam   SHOW = 1'b1,
              xpos_nxt = 900;
              ypos_nxt= 800;
              random_nxt = random_number%9;
-                if(delay>=DELAY)begin
+                if(delay>=delay_wait)begin
                 delay_nxt=0;
                 delayed=1;
-                delay_wait_nxt <= delay_wait -DELAY_WAIT;
+                if (delay_wait >= DELAY_WAIT_MIN)delay_wait_nxt <= delay_wait -DELAY_WAIT;
                 end 
                     end
             
