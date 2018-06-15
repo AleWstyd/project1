@@ -47,15 +47,15 @@ module game_module(
     );
 
 
-    localparam  HOLE_SIZE = 40;
-    localparam  HOLE_1_Y = 135;  
-    localparam  HOLE_1_X = 185;
+    localparam  HOLE_SIZE = 48;
+    localparam  HOLE_1_Y = 128;  
+    localparam  HOLE_1_X = 170;
         
     localparam HOLE_2_Y = 285;
-    localparam HOLE_2_X = 385;
+    localparam HOLE_2_X = 376;
         
     localparam HOLE_3_Y = 435;
-    localparam HOLE_3_X = 585;
+    localparam HOLE_3_X = 582;
         
     localparam MOLE_HEIGHT = 64;
     localparam MOLE_WIDTH = 32;
@@ -240,12 +240,6 @@ module game_module(
                      .HOLE_SIZE(HOLE_SIZE),
                      .HOLE_1_Y (HOLE_1_Y),
                      .HOLE_1_X (HOLE_1_X),
-                        
-                     .HOLE_2_Y (HOLE_2_Y),
-                     .HOLE_2_X(HOLE_2_X),
-                        
-                     .HOLE_3_Y(HOLE_3_Y),
-                     .HOLE_3_X(HOLE_3_X),
                      
                      .MOLE_HEIGHT(MOLE_HEIGHT), 
                      .MOLE_WIDTH(MOLE_WIDTH)

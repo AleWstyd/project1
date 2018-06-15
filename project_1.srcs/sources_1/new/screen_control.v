@@ -71,8 +71,8 @@ localparam    START = 2'b00,
 
 reg game_enable_nxt = 0;
     
-reg [ 1 : 0 ] state;
-reg [ 1 : 0 ] state_nxt;
+reg [1:0] state;
+reg [1:0] state_nxt;
 
 reg [11:0] hcount_out_nxt, vcount_out_nxt;
 reg hblnk_out_nxt,vblnk_out_nxt;

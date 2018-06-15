@@ -51,6 +51,12 @@ module draw_background
     output reg [11:0] rgb_out
     );
     
+ 
+localparam BLACK_WIDTH = 3;
+localparam BROWN_WIDTH  = 6;
+
+localparam FILL_CLR = 12'h7_4_0;
+localparam BROWN_CLR = 12'h8_4_0;
 
 reg [11:0] rgb_nxt;
 
@@ -85,8 +91,9 @@ always @*
         else
          begin
                  
-                 if (hcount_in > HOLE_1_X && hcount_in < HOLE_1_X + HOLE_SIZE && vcount_in > HOLE_1_Y && vcount_in < HOLE_1_Y + HOLE_SIZE) rgb_nxt <= 12'h8_4_0;
-                 else if (hcount_in == HOLE_1_X && hcount_in == HOLE_1_X + HOLE_SIZE && vcount_in == HOLE_1_Y && vcount_in == HOLE_1_Y + HOLE_SIZE) rgb_nxt <= 12'h0_0_0;
+                 if (hcount_in >= HOLE_1_X && hcount_in <= HOLE_1_X + HOLE_SIZE && vcount_in >= HOLE_1_Y && vcount_in <= HOLE_1_Y + HOLE_SIZE) rgb_nxt <= 12'h0_0_0;
+                 else if (hcount_in >= HOLE_1_X + BLACK_WIDTH && hcount_in <= HOLE_1_X + HOLE_SIZE - BLACK_WIDTH && vcount_in >= HOLE_1_Y + BLACK_WIDTH && vcount_in <= HOLE_1_Y + HOLE_SIZE - BLACK_WIDTH) rgb_nxt <= BROWN_CLR;
+                 else if (hcount_in >= HOLE_1_X + BROWN_WIDTH && hcount_in <= HOLE_1_X + HOLE_SIZE - BROWN_WIDTH && vcount_in >= HOLE_1_Y + BROWN_WIDTH && vcount_in <= HOLE_1_Y + HOLE_SIZE - BROWN_WIDTH) rgb_nxt <= FILL_CLR;
                  
                  else if (hcount_in > HOLE_2_X && hcount_in < HOLE_2_X + HOLE_SIZE && vcount_in > HOLE_1_Y && vcount_in < HOLE_1_Y + HOLE_SIZE) rgb_nxt <= 12'h8_4_0;
                  else if (hcount_in == HOLE_2_X && hcount_in == HOLE_2_X + HOLE_SIZE && vcount_in == HOLE_1_Y && vcount_in == HOLE_1_Y + HOLE_SIZE) rgb_nxt <= 12'h0_0_0;
