@@ -25,7 +25,10 @@ module draw_moles
 
          MOLE_HEIGHT = 60,
          MOLE_WIDTH = 30,
-         MOLE_COLOUR = 12'h6_2_0
+         MOLE_COLOUR = 12'h6_2_0,
+         
+         X_WIDTH = 6,
+         Y_WIDTH = 6 
     )
     (
     input wire [10:0] vcount_in,
@@ -37,6 +40,7 @@ module draw_moles
     input wire clk,
     input wire rst,
     input wire [11:0] rgb_in,
+    input wire [11:0] rgb_pixel,
     
     input wire [11:0] xpos,
     input wire [11:0] ypos,
@@ -48,13 +52,15 @@ module draw_moles
     output reg [10:0] vcount_out,
     output reg vsync_out,
     output reg vblnk_out,  
+    output reg [X_WIDTH+Y_WIDTH-1:0] pixel_addr,
     output reg [11:0] rgb_out
 
     );
 
 reg [11:0] rgb_nxt;
 
-
+reg [X_WIDTH-1:0]   addr_X;
+reg [Y_WIDTH-1:0]   addr_Y;
 
 
 always @(posedge clk) begin
@@ -83,7 +89,9 @@ always @(posedge clk) begin
  
  always @*
               begin
-               if (hcount_in > xpos && hcount_in < xpos + MOLE_WIDTH && vcount_in > ypos - MOLE_HEIGHT && vcount_in < ypos ) rgb_nxt <= MOLE_COLOUR;
+              addr_X = hcount_in - xpos;
+              addr_Y = vcount_in - ypos;
+               if (hcount_in > xpos && hcount_in < xpos + MOLE_WIDTH && vcount_in > ypos - MOLE_HEIGHT && vcount_in < ypos ) rgb_nxt <= rgb_pixel;
                else   rgb_nxt <= rgb_in; 
                                  
  

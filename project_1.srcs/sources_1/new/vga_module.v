@@ -20,18 +20,22 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module vga_module(
+module game_module(
     input wire clk40,  
 	input wire rst,  
 	input wire [11:0] xpos,
     input wire [11:0] ypos,
     input wire left, 
 
-    output wire [3:0] r,
-    output wire [3:0] g,
-    output wire [3:0] b,
+
+    output wire [10:0] hcount_out,
+    output wire hs,
+    output wire hblnk_out,
+    output wire [10:0] vcount_out,   
     output wire vs,
-    output wire hs
+    output wire vblnk_out,
+    output wire [11:0] rgb_out
+    
 
     );
 
@@ -76,10 +80,10 @@ module vga_module(
 //////////       background module           ///////////////
 ///////////////////////////////////////////////////////////
 
-  wire [10:0] vcount_out_b, hcount_out_b, vcount_out_c, hcount_out_c, vcount_out, hcount_out;
-  wire vsync_out_b, hsync_out_b, vsync_out_c, hsync_out_c, vsync_out, hsync_out;
-  wire vblnk_out_b, hblnk_out_b, vblnk_out_c, hblnk_out_c, vblnk_out, hblnk_out;
-  wire [11:0] rgb_out_b, rgb_out_c, rgb_out;
+  wire [10:0] vcount_out_b, hcount_out_b, vcount_out_c, hcount_out_c, vcount_out_d, hcount_out_d;
+  wire vsync_out_b, hsync_out_b, vsync_out_c, hsync_out_c, vsync_out_d, hsync_out_d;
+  wire vblnk_out_b, hblnk_out_b, vblnk_out_c, hblnk_out_c, vblnk_out_d, hblnk_out_d;
+  wire [11:0] rgb_out_b, rgb_out_c, rgb_out_d;
 
     draw_background # (
          .HOLE_SIZE(HOLE_SIZE),
@@ -111,57 +115,11 @@ module vga_module(
     .rgb_out(rgb_out_b)
   );
   
-   
-  
-      ////////////////////////////////////////////////////////
-      //////////       mouse display           ///////////////
-      ////////////////////////////////////////////////////////
-      
-      wire [11:0] xpos_buff,ypos_buff;
-      wire [0:3] green_out_m, red_out_m, blue_out_m; 
-      
-      MouseDisplay mouse_display(
-      
-          .xpos(xpos_buff),
-          .ypos(ypos_buff),
-          .pixel_clk(clk40),
-          .red_in(rgb_out_c[11:8]),
-          .green_in(rgb_out_c[7:4]),
-          .blue_in(rgb_out_c[3:0]),
-          .blank(hblnk_out_c || vblnk_out_c),
-          .hcount({1'b0,hcount_out_c+1}),
-          .vcount({1'b0,vcount_out_c}),
-          
-          
-          .red_out(r),
-          .green_out(g),
-          .blue_out(b)
-      );
-      
-      ////////////////////////////////////////////////////////
-      //////////       buffer module           ///////////////
-      ////////////////////////////////////////////////////////
-      
-      wire mouseleft_out;
-      
-      buffer_module buffer_module(
-          .xpos_in(xpos),
-          .ypos_in(ypos),
-          .mouseleft_in(left),
-          .clk(clk40),
-          .rst(rst),
-          
-          .xpos_out(xpos_buff),
-          .ypos_out(ypos_buff),
-          .mouseleft_out(mouseleft_out)
-      );
-      
-       
-     
               
       ////////////////////////////////////////////////////////
       //////////           rectangle char      ///////////////
       ////////////////////////////////////////////////////////
+      
        wire [7:0] char_pixels, char_xy;
        wire [3:0] char_line;
        wire [6:0] char_code;
@@ -174,26 +132,30 @@ module vga_module(
          )
        my_draw_rect_char(
          .pclk(clk40),
-         .hcount_in(hcount_out),
-         .hsync_in(hsync_out),
-         .hblnk_in(hblnk_out),
-         .vcount_in(vcount_out),
-         .vsync_in(vsync_out),
-         .vblnk_in(vblnk_out),
-         .rgb_in(rgb_out),
+         .hcount_in(hcount_out_d),
+         .hsync_in(hsync_out_d),
+         .hblnk_in(hblnk_out_d),
+         .vcount_in(vcount_out_d),
+         .vsync_in(vsync_out_d),
+         .vblnk_in(vblnk_out_d),
+         .rgb_in(rgb_out_d),
          .char_pixels(char_pixels),
          .rst(rst),
          
-         .hcount_out(hcount_out_c),
+         .hcount_out(hcount_out),
          .hsync_out(hs),
-         .hblnk_out(hblnk_out_c),
-         .vcount_out(vcount_out_c),
+         .hblnk_out(hblnk_out),
+         .vcount_out(vcount_out),
          .vsync_out(vs),
-         .vblnk_out(vblnk_out_c),
-         .rgb_out(rgb_out_c),
+         .vblnk_out(vblnk_out),
+         .rgb_out(rgb_out),
          .char_xy(char_xy),
          .char_line(char_line)
        ); 
+ 
+////////////////////////////////////////////////////////
+ //////////           char rom       ///////////////
+  ////////////////////////////////////////////////////////       
       
        char_rom_16x16 my_char_rom_16x16(
          .char_xy(char_xy),
@@ -205,6 +167,11 @@ module vga_module(
        
        assign addr = {char_code, char_line};
        
+////////////////////////////////////////////////////////
+/////////           font rom           ///////////////
+////////////////////////////////////////////////////////
+
+       
        font_rom my_font_rom(
          .clk(clk40),
          .addr(addr),
@@ -212,12 +179,38 @@ module vga_module(
        );  
        
     wire [11:0] xpos_k,ypos_k;
-    
+    wire [20:0] address;  
+    wire [11:0] rgb_pixel;
+             
+ ////////////////////////////////////////////////////////
+/////////           mole image rom        ///////////////
+////////////////////////////////////////////////////////
+          
+                      
+      image_rom # (
+              .FILE_PATH("C:/Users/Mikolaj/Desktop/obrazki/test.data"),
+              .X_WIDTH(6),
+              .Y_WIDTH(5)
+            )
+           ship_rom(     
+         .clk(clk40),
+         .address(address),
+         .rgb(rgb_pixel)
+         );
+  
+ ////////////////////////////////////////////////////////
+ //////////           draw mole           ///////////////
+ ////////////////////////////////////////////////////////
+               
+               
+                  
    draw_moles  # (
             
             .MOLE_HEIGHT(MOLE_HEIGHT), 
             .MOLE_WIDTH(MOLE_WIDTH),
-            .MOLE_COLOUR(MOLE_COLOUR)
+            .MOLE_COLOUR(MOLE_COLOUR),
+             .X_WIDTH(6),
+             .Y_WIDTH(5)
             )
          my_moles(
         .clk(clk40),
@@ -229,35 +222,37 @@ module vga_module(
         .vblnk_in(vblnk_out_b),
         .rgb_in(rgb_out_b),
         .rst(rst),
+        .rgb_pixel(rgb_pixel),
         .xpos(xpos_k),
         .ypos(ypos_k),
         
-        
-        .hcount_out(hcount_out),
-        .hsync_out(hsync_out),
-        .hblnk_out(hblnk_out),
-        .vcount_out(vcount_out),
-        .vsync_out(vsync_out),
-        .vblnk_out(vblnk_out),
-        .rgb_out(rgb_out)
+        .pixel_addr(address),
+        .hcount_out(hcount_out_d),
+        .hsync_out(hsync_out_d),
+        .hblnk_out(hblnk_out_d),
+        .vcount_out(vcount_out_d),
+        .vsync_out(vsync_out_d),
+        .vblnk_out(vblnk_out_d),
+        .rgb_out(rgb_out_d)
     
         );
         
-        
-    wire enable;
+ ////////////////////////////////////////////////////////
+ //////////     random number generator    ///////////////
+  ////////////////////////////////////////////////////////
     wire [9:0] random_number;
     
     mole_control my_moles_control (
-    
             .clk(clk40),
-
-            
             .random_number(random_number)
          );
    
    
    
-   
+////////////////////////////////////////////////////////
+//////////           main mole module    ///////////////
+////////////////////////////////////////////////////////   
+
          main_mole  # (
                      .HOLE_SIZE(HOLE_SIZE),
                      .HOLE_1_Y (HOLE_1_Y),
@@ -277,20 +272,15 @@ module vga_module(
                   
                  .clk(clk40),
                  .rst(rst),
-                 .xpos(xpos_buff),
-                 .ypos(ypos_buff),
+                 .xpos(xpos),
+                 .ypos(ypos),
                  .left(left),
+                 .random_number(random_number),
+                 
                  .xpos_out(xpos_k),
                  .ypos_out(ypos_k),
-                 .random_number(random_number),
                  .result(result)
-
-               
-                 );
-                 
-               
-                 
-                 
-                 
+                  );
+             
                  
 endmodule

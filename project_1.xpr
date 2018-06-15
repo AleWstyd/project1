@@ -116,6 +116,15 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/imports/Elektronika Cyfrowa 1/image_rom.v">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="C:/Users/student/Documents/vga4_odbijanie/image_rom.v"/>
+          <Attr Name="ImportTime" Val="1521222507"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/new/main_mole.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -124,6 +133,13 @@
         </FileInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/new/mole_control.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/mouse_module.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -174,16 +190,6 @@
         <FileInfo>
           <Attr Name="ImportPath" Val="C:/../projekt1cyfra/vga_example.v"/>
           <Attr Name="ImportTime" Val="1519846501"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/Elektronika Cyfrowa 1/image_rom.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="C:/Users/student/Documents/vga4_odbijanie/image_rom.v"/>
-          <Attr Name="ImportTime" Val="1521222507"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>

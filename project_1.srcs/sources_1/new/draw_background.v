@@ -86,16 +86,31 @@ always @*
          begin
                  
                  if (hcount_in > HOLE_1_X && hcount_in < HOLE_1_X + HOLE_SIZE && vcount_in > HOLE_1_Y && vcount_in < HOLE_1_Y + HOLE_SIZE) rgb_nxt <= 12'h8_4_0;
+                 else if (hcount_in == HOLE_1_X && hcount_in == HOLE_1_X + HOLE_SIZE && vcount_in == HOLE_1_Y && vcount_in == HOLE_1_Y + HOLE_SIZE) rgb_nxt <= 12'h0_0_0;
+                 
                  else if (hcount_in > HOLE_2_X && hcount_in < HOLE_2_X + HOLE_SIZE && vcount_in > HOLE_1_Y && vcount_in < HOLE_1_Y + HOLE_SIZE) rgb_nxt <= 12'h8_4_0;
+                 else if (hcount_in == HOLE_2_X && hcount_in == HOLE_2_X + HOLE_SIZE && vcount_in == HOLE_1_Y && vcount_in == HOLE_1_Y + HOLE_SIZE) rgb_nxt <= 12'h0_0_0;
+                 
                  else if (hcount_in > HOLE_3_X && hcount_in < HOLE_3_X + HOLE_SIZE && vcount_in > HOLE_1_Y && vcount_in < HOLE_1_Y + HOLE_SIZE) rgb_nxt <= 12'h8_4_0;
+                 else if (hcount_in == HOLE_3_X && hcount_in == HOLE_3_X + HOLE_SIZE && vcount_in == HOLE_1_Y && vcount_in == HOLE_1_Y + HOLE_SIZE) rgb_nxt <= 12'h0_0_0;
                  
                  else if (hcount_in > HOLE_1_X && hcount_in < HOLE_1_X + HOLE_SIZE && vcount_in > HOLE_2_Y && vcount_in < HOLE_2_Y + HOLE_SIZE) rgb_nxt <= 12'h8_4_0;
+                 else if (hcount_in == HOLE_1_X && hcount_in == HOLE_1_X + HOLE_SIZE && vcount_in == HOLE_2_Y && vcount_in == HOLE_2_Y + HOLE_SIZE) rgb_nxt <= 12'h0_0_0;
+                 
                  else if (hcount_in > HOLE_2_X && hcount_in < HOLE_2_X + HOLE_SIZE && vcount_in > HOLE_2_Y && vcount_in < HOLE_2_Y + HOLE_SIZE) rgb_nxt <= 12'h8_4_0;
+                 else if (hcount_in == HOLE_2_X && hcount_in == HOLE_2_X + HOLE_SIZE && vcount_in == HOLE_2_Y && vcount_in == HOLE_2_Y + HOLE_SIZE) rgb_nxt <= 12'h0_0_0;
+                 
                  else if (hcount_in > HOLE_3_X && hcount_in < HOLE_3_X + HOLE_SIZE && vcount_in > HOLE_2_Y && vcount_in < HOLE_2_Y + HOLE_SIZE) rgb_nxt <= 12'h8_4_0;
+                 else if (hcount_in == HOLE_3_X && hcount_in == HOLE_3_X + HOLE_SIZE && vcount_in == HOLE_2_Y && vcount_in == HOLE_2_Y + HOLE_SIZE) rgb_nxt <= 12'h0_0_0;
                  
                  else if (hcount_in > HOLE_1_X && hcount_in < HOLE_1_X + HOLE_SIZE && vcount_in > HOLE_3_Y && vcount_in < HOLE_3_Y + HOLE_SIZE) rgb_nxt <= 12'h8_4_0;
+                 else if (hcount_in == HOLE_1_X && hcount_in == HOLE_1_X + HOLE_SIZE && vcount_in == HOLE_3_Y && vcount_in == HOLE_3_Y + HOLE_SIZE) rgb_nxt <= 12'h0_0_0;
+                 
                  else if (hcount_in > HOLE_2_X && hcount_in < HOLE_2_X + HOLE_SIZE && vcount_in > HOLE_3_Y && vcount_in < HOLE_3_Y + HOLE_SIZE) rgb_nxt <= 12'h8_4_0;
+                 else if (hcount_in == HOLE_2_X && hcount_in == HOLE_2_X + HOLE_SIZE && vcount_in == HOLE_3_Y && vcount_in == HOLE_3_Y + HOLE_SIZE) rgb_nxt <= 12'h0_0_0;
+                 
                  else if (hcount_in > HOLE_3_X && hcount_in < HOLE_3_X + HOLE_SIZE && vcount_in > HOLE_3_Y && vcount_in < HOLE_3_Y + HOLE_SIZE) rgb_nxt <= 12'h8_4_0;
+                 else if (hcount_in == HOLE_3_X && hcount_in == HOLE_3_X + HOLE_SIZE && vcount_in == HOLE_3_Y && vcount_in == HOLE_3_Y + HOLE_SIZE) rgb_nxt <= 12'h0_0_0;
                  
                  
                  else rgb_nxt <= 12'h0_a_0;    
