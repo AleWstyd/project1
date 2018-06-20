@@ -6,7 +6,7 @@
 
 `timescale 1ns / 1ps
 
-module char_rom_16x16(
+module char_rom_end(
     input wire [7:0] char_xy,
     input wire [9:0] result,
     input wire clk,
@@ -41,7 +41,7 @@ module char_rom_16x16(
           
           
     //16 characters allowed in each line
-    reg [0:127] line0   = "   WYNIK:       ";
+    reg [0:127] line0   = " YOU SCORED:    ";
    /*
     reg [0:127] line1   = "  Jaroslawski   "; 
     reg [0:127] line2   = "Mikroelektronika";
@@ -75,11 +75,11 @@ module char_rom_16x16(
                 7:  char_code = line0[56:63];
                 8:  char_code = line0[64:71];
                 9:  char_code = line0[72:79];
-                10:  char_code = second;
-                11:  char_code = first;
+                10:  char_code = line0[80:87];
+                11:  char_code = line0[88:95];
                 12:  char_code = line0[96:103];
-                13:  char_code = line0[104:111];
-                14:  char_code = line0[112:119];
+                13:  char_code = second;
+                14:  char_code = first;
                 15:  char_code = line0[120:127];   
                 default:
                 char_code =7'h45;

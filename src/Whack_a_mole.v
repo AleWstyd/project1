@@ -1,17 +1,26 @@
-// File: vga_example.v
-// This is the top level design for EE178 Lab #4.
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 06/15/2018 10:42:20 PM
+// Design Name: 
+// Module Name: Whack_a_mole
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
 
-// The `timescale directive specifies what the
-// simulation time units are (1 ns here) and what
-// the simulator time step should be (1 ps here).
 
-`timescale 1 ns / 1 ps
-
-// Declare the module and its ports. This is
-// using Verilog-2001 syntax.
-
-module vga_example (
-  input wire clk,
+module Whack_a_mole(input wire clk,
   input wire rst,
   
   output wire  vs,
@@ -98,6 +107,7 @@ wire vblnk_out_game, hblnk_out_game, vblnk_out_end, hblnk_out_end, vblnk_out_sta
 wire [11:0] rgb_out_game, rgb_out_end, rgb_out_start,rgb_out;
 wire start, restart, end_game;
 wire game_enable;
+wire [9:0] result;
   
   
 game_module my_game ( 
@@ -113,6 +123,7 @@ game_module my_game (
     .hsync(hsync),
     .hblnk(hblnk),
 
+    .result_out(result),
     .end_game(end_game),
     .hcount_out(hcount_out_game),
     .hblnk_out(hblnk_out_game),
@@ -139,7 +150,9 @@ draw_end my_end (
     .hcount(hcount),
     .hsync(hsync),
     .hblnk(hblnk),
-
+    
+    
+    .result_in(result),
     .restart(restart),
     .hcount_out(hcount_out_end),
     .hblnk_out(hblnk_out_end),
@@ -235,7 +248,7 @@ draw_end my_end (
       wire [11:0] xpos_buff,ypos_buff;
       wire [0:3] green_out_m, red_out_m, blue_out_m; 
       
-      MouseDisplay mouse_display(
+      MouseDisplay my_mouse_display(
       
           .xpos(xpos),
           .ypos(ypos),
@@ -256,3 +269,4 @@ draw_end my_end (
       
       
 endmodule
+

@@ -33,6 +33,7 @@ module draw_end(
     input wire [11:0] xpos,
     input wire [11:0] ypos,
     input wire left,
+    input wire [9:0] result_in,
 
     output wire restart,
     output wire [10:0] hcount_out,
@@ -121,11 +122,12 @@ module draw_end(
                    wire [3:0] char_line;
                    wire [6:0] char_code;
                    wire [10:0] addr;
-                   wire [9:0] result;
                    
                    draw_rect_char # (
                      .X_UP_LEFT_CORNER(336),
-                     .Y_UP_LEFT_CORNER(385)
+                     .Y_UP_LEFT_CORNER(385),
+                     .X_RECT_SIZE(128),
+                     .Y_RECT_SIZE (16)
                      )
                    my_draw_rect_char(
                      .pclk(clk40),
@@ -154,9 +156,9 @@ module draw_end(
    //////////           char rom       ///////////////
   ////////////////////////////////////////////////////////       
                   
-                   char_rom_16x16 my_char_rom_16x16(
+                   char_rom_end my_char_rom_16x16(
                      .char_xy(char_xy),
-                     .result(result),
+                     .result(result_in),
                      .clk(clk40),
                      .rst(rst),
                      .char_code(char_code)

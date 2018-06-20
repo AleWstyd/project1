@@ -62,7 +62,7 @@ module draw_menu(
                   
                               
               image_rom # (
-                      .FILE_PATH("C:/Users/Mikolaj/Desktop/obrazki/mole1.data"),
+                      .FILE_PATH("C:/Users/Mikolaj/Desktop/obrazki/menu.data"),
                       .X_WIDTH(8),
                       .Y_WIDTH(7)
                     )

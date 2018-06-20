@@ -3,10 +3,10 @@
 <!--                                                         -->
 <!-- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="36" Path="E:/Moje marne studia/Elektronika Cyfrowa 1/PROJEKT/project_1/project_1.xpr">
+<Project Version="7" Minor="36" Path="E:/Moje marne studia/Elektronika Cyfrowa 1/Whack_a_mole/Whack_a_mole/Whack_a_mole.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="dedbb84ff51044f08a0d30a1d3cac0e0"/>
+    <Option Name="Id" Val="9e2c89d7d12a4d48b25903c3ccf74309"/>
     <Option Name="Part" Val="xc7a35tcpg236-1"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -57,6 +57,8 @@
       <Filter Type="Srcs"/>
       <File Path="$PSRCDIR/sources_1/ip/clk_wiz_0.xcix">
         <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../PROJEKT/project_1/project_1.srcs/sources_1/ip/clk_wiz_0.xcix"/>
+          <Attr Name="ImportTime" Val="1529086089"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -71,168 +73,152 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/buffer_module.v">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="C:/Users/student/Documents/vga4_odbijanie/project_rom/project_display.srcs/sources_1/new/buffer_module.v"/>
-          <Attr Name="ImportTime" Val="1522159527"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/jarojaro/char_rom_16x16.v">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../char_rom_16x16.v"/>
-          <Attr Name="ImportTime" Val="1523365782"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/click_check.v">
+      <File Path="$PPRDIR/../src/buffer_module.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/draw_end.v">
+      <File Path="$PPRDIR/../src/char_rom_16x16.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/draw_holes.v">
+      <File Path="$PPRDIR/../src/char_rom_end.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/draw_menu.v">
+      <File Path="$PPRDIR/../src/click_check.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/draw_moles.v">
+      <File Path="$PPRDIR/../src/draw_end.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/jarojaro/draw_rect_char.v">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../draw_rect_char.v"/>
-          <Attr Name="ImportTime" Val="1523365782"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/jarojaro/font_rom.v">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../font_rom.v"/>
-          <Attr Name="ImportTime" Val="1523365782"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/Elektronika Cyfrowa 1/image_rom.v">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="C:/Users/student/Documents/vga4_odbijanie/image_rom.v"/>
-          <Attr Name="ImportTime" Val="1521222507"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/main_mole.v">
+      <File Path="$PPRDIR/../src/draw_holes.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/mole_control.v">
+      <File Path="$PPRDIR/../src/draw_menu.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/mouse_module.v">
+      <File Path="$PPRDIR/../src/draw_moles.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/screen_control.v">
+      <File Path="$PPRDIR/../src/draw_rect_char.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/vga_module.v">
+      <File Path="$PPRDIR/../src/font_rom.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/projekt1cyfra/vga_timing.v">
+      <File Path="$PPRDIR/../src/image_rom.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="C:/../projekt1cyfra/vga_timing.v"/>
-          <Attr Name="ImportTime" Val="1520279736"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/Elektronika Cyfrowa 1/MouseCtl.vhd">
+      <File Path="$PPRDIR/../src/main_mole.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="C:/Users/student/Documents/MouseCtl.vhd"/>
-          <Attr Name="ImportTime" Val="1521219990"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/Elektronika Cyfrowa 1/MouseDisplay.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="C:/Users/student/Documents/MouseDisplay.vhd"/>
-          <Attr Name="ImportTime" Val="1521032524"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/Elektronika Cyfrowa 1/Ps2Interface.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="C:/Users/student/Documents/Ps2Interface.vhd"/>
-          <Attr Name="ImportTime" Val="1521021162"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/projekt1cyfra/vga_example.v">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="C:/../projekt1cyfra/vga_example.v"/>
-          <Attr Name="ImportTime" Val="1519846501"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/draw_background.v">
+      <File Path="$PPRDIR/../src/mole_control.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="C:/Users/student/Documents/vga4_odbijanie/project_rom/project_display.srcs/sources_1/new/draw_background.v"/>
-          <Attr Name="ImportTime" Val="1522159527"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../src/mouse_module.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../src/result_latch.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../src/screen_control.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../src/vga_module.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../src/vga_timing.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../src/MouseCtl.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../src/MouseDisplay.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../src/Ps2Interface.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../src/Whack_a_mole.v">
+        <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -240,16 +226,13 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="vga_example"/>
-        <Option Name="TopAutoSet" Val="TRUE"/>
+        <Option Name="TopModule" Val="Whack_a_mole"/>
       </Config>
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
       <Filter Type="Constrs"/>
-      <File Path="$PSRCDIR/constrs_1/imports/projekt1cyfra/vga_example.xdc">
+      <File Path="$PPRDIR/../src/vga_example.xdc">
         <FileInfo>
-          <Attr Name="ImportPath" Val="C:/../projekt1cyfra/vga_example.xdc"/>
-          <Attr Name="ImportTime" Val="1439915570"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
         </FileInfo>
@@ -260,39 +243,31 @@
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sim_1/imports/projekt1cyfra/tiff_writer.v">
+      <File Path="$PPRDIR/../src/tiff_writer.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="C:/../projekt1cyfra/tiff_writer.v"/>
-          <Attr Name="ImportTime" Val="1439915534"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sim_1/imports/projekt1cyfra/testbench.v">
+      <File Path="$PPRDIR/../src/testbench.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="C:/../projekt1cyfra/testbench.v"/>
-          <Attr Name="ImportTime" Val="1439915590"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sim_1/imports/Elektronika Cyfrowa 1/draw_rect_ctl_tb.v">
+      <File Path="$PPRDIR/../src/draw_rect_ctl_test.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="C:/Users/student/Documents/vga4_odbijanie/draw_rect_ctl_tb.v"/>
-          <Attr Name="ImportTime" Val="1521238162"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sim_1/imports/Elektronika Cyfrowa 1/draw_rect_ctl_test.v">
+      <File Path="$PPRDIR/../src/draw_rect_ctl_tb.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="C:/Users/student/Documents/vga4_odbijanie/draw_rect_ctl_test.v"/>
-          <Attr Name="ImportTime" Val="1521238641"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -334,11 +309,11 @@
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2017" CtrlBit="true">
-        <ReportConfig Name="synth_1_synth_report_utilization_0" Spec="report_utilization" RunStep="synth_design" ReportFile="vga_example_utilization_synth.rpt" Version="1" Minor="0">
+        <ReportConfig Name="synth_1_synth_report_utilization_0" Spec="report_utilization" RunStep="synth_design" ReportFile="Whack_a_mole_utilization_synth.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="vga_example_utilization_synth.pb"/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="Whack_a_mole_utilization_synth.pb"/>
         </ReportConfig>
-        <ReportConfig Name="synth_1_synth_synthesis_report_0" Spec="" RunStep="synth_design" ReportFile="vga_example.vds">
+        <ReportConfig Name="synth_1_synth_synthesis_report_0" Spec="" RunStep="synth_design" ReportFile="Whack_a_mole.vds">
           <ReportConfigOption Name="dummy_option" Type="string"/>
         </ReportConfig>
       </ReportStrategy>
@@ -364,10 +339,10 @@
           <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
           <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
         </ReportConfig>
-        <ReportConfig Name="impl_1_opt_report_drc_0" Spec="report_drc" RunStep="opt_design" ReportFile="vga_example_drc_opted.rpt" Version="1" Minor="0">
+        <ReportConfig Name="impl_1_opt_report_drc_0" Spec="report_drc" RunStep="opt_design" ReportFile="Whack_a_mole_drc_opted.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="vga_example_drc_opted.pb"/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value="vga_example_drc_opted.rpx"/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="Whack_a_mole_drc_opted.pb"/>
+          <ReportConfigOutputOption Name="rpx" Type="string" Value="Whack_a_mole_drc_opted.rpx"/>
         </ReportConfig>
         <ReportConfig Name="impl_1_opt_report_timing_summary_0" Spec="report_timing_summary" RunStep="opt_design" Version="1" Minor="0" IsDisabled="true">
           <ReportConfigOption Name="dummy_option" Type="string"/>
@@ -379,14 +354,14 @@
           <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
           <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
         </ReportConfig>
-        <ReportConfig Name="impl_1_place_report_io_0" Spec="report_io" RunStep="place_design" ReportFile="vga_example_io_placed.rpt" Version="1" Minor="0">
+        <ReportConfig Name="impl_1_place_report_io_0" Spec="report_io" RunStep="place_design" ReportFile="Whack_a_mole_io_placed.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
         </ReportConfig>
-        <ReportConfig Name="impl_1_place_report_utilization_0" Spec="report_utilization" RunStep="place_design" ReportFile="vga_example_utilization_placed.rpt" Version="1" Minor="0">
+        <ReportConfig Name="impl_1_place_report_utilization_0" Spec="report_utilization" RunStep="place_design" ReportFile="Whack_a_mole_utilization_placed.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="vga_example_utilization_placed.pb"/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="Whack_a_mole_utilization_placed.pb"/>
         </ReportConfig>
-        <ReportConfig Name="impl_1_place_report_control_sets_0" Spec="report_control_sets" RunStep="place_design" ReportFile="vga_example_control_sets_placed.rpt" Version="1" Minor="0">
+        <ReportConfig Name="impl_1_place_report_control_sets_0" Spec="report_control_sets" RunStep="place_design" ReportFile="Whack_a_mole_control_sets_placed.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
         </ReportConfig>
         <ReportConfig Name="impl_1_place_report_incremental_reuse_0" Spec="report_incremental_reuse" RunStep="place_design" Version="1" Minor="0" IsDisabled="true">
@@ -410,37 +385,37 @@
           <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
           <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
         </ReportConfig>
-        <ReportConfig Name="impl_1_route_report_drc_0" Spec="report_drc" RunStep="route_design" ReportFile="vga_example_drc_routed.rpt" Version="1" Minor="0">
+        <ReportConfig Name="impl_1_route_report_drc_0" Spec="report_drc" RunStep="route_design" ReportFile="Whack_a_mole_drc_routed.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="vga_example_drc_routed.pb"/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value="vga_example_drc_routed.rpx"/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="Whack_a_mole_drc_routed.pb"/>
+          <ReportConfigOutputOption Name="rpx" Type="string" Value="Whack_a_mole_drc_routed.rpx"/>
         </ReportConfig>
-        <ReportConfig Name="impl_1_route_report_methodology_0" Spec="report_methodology" RunStep="route_design" ReportFile="vga_example_methodology_drc_routed.rpt" Version="1" Minor="0">
+        <ReportConfig Name="impl_1_route_report_methodology_0" Spec="report_methodology" RunStep="route_design" ReportFile="Whack_a_mole_methodology_drc_routed.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="vga_example_methodology_drc_routed.pb"/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value="vga_example_methodology_drc_routed.rpx"/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="Whack_a_mole_methodology_drc_routed.pb"/>
+          <ReportConfigOutputOption Name="rpx" Type="string" Value="Whack_a_mole_methodology_drc_routed.rpx"/>
         </ReportConfig>
-        <ReportConfig Name="impl_1_route_report_power_0" Spec="report_power" RunStep="route_design" ReportFile="vga_example_power_routed.rpt" Version="1" Minor="0">
+        <ReportConfig Name="impl_1_route_report_power_0" Spec="report_power" RunStep="route_design" ReportFile="Whack_a_mole_power_routed.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="vga_example_power_summary_routed.pb"/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value="vga_example_power_routed.rpx"/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="Whack_a_mole_power_summary_routed.pb"/>
+          <ReportConfigOutputOption Name="rpx" Type="string" Value="Whack_a_mole_power_routed.rpx"/>
         </ReportConfig>
-        <ReportConfig Name="impl_1_route_report_route_status_0" Spec="report_route_status" RunStep="route_design" ReportFile="vga_example_route_status.rpt" Version="1" Minor="0">
+        <ReportConfig Name="impl_1_route_report_route_status_0" Spec="report_route_status" RunStep="route_design" ReportFile="Whack_a_mole_route_status.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="vga_example_route_status.pb"/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="Whack_a_mole_route_status.pb"/>
         </ReportConfig>
-        <ReportConfig Name="impl_1_route_report_timing_summary_0" Spec="report_timing_summary" RunStep="route_design" ReportFile="vga_example_timing_summary_routed.rpt" Version="1" Minor="0">
+        <ReportConfig Name="impl_1_route_report_timing_summary_0" Spec="report_timing_summary" RunStep="route_design" ReportFile="Whack_a_mole_timing_summary_routed.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="vga_example_timing_summary_routed.pb"/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value="vga_example_timing_summary_routed.rpx"/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="Whack_a_mole_timing_summary_routed.pb"/>
+          <ReportConfigOutputOption Name="rpx" Type="string" Value="Whack_a_mole_timing_summary_routed.rpx"/>
         </ReportConfig>
-        <ReportConfig Name="impl_1_route_report_incremental_reuse_0" Spec="report_incremental_reuse" RunStep="route_design" ReportFile="vga_example_incremental_reuse_routed.rpt" Version="1" Minor="0">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-        </ReportConfig>
-        <ReportConfig Name="impl_1_route_report_clock_utilization_0" Spec="report_clock_utilization" RunStep="route_design" ReportFile="vga_example_clock_utilization_routed.rpt" Version="1" Minor="0">
+        <ReportConfig Name="impl_1_route_report_incremental_reuse_0" Spec="report_incremental_reuse" RunStep="route_design" ReportFile="Whack_a_mole_incremental_reuse_routed.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
         </ReportConfig>
-        <ReportConfig Name="impl_1_route_implementation_log_0" Spec="" RunStep="route_design" ReportFile="vga_example.vdi">
+        <ReportConfig Name="impl_1_route_report_clock_utilization_0" Spec="report_clock_utilization" RunStep="route_design" ReportFile="Whack_a_mole_clock_utilization_routed.rpt" Version="1" Minor="0">
+          <ReportConfigOption Name="dummy_option" Type="string"/>
+        </ReportConfig>
+        <ReportConfig Name="impl_1_route_implementation_log_0" Spec="" RunStep="route_design" ReportFile="Whack_a_mole.vdi">
           <ReportConfigOption Name="dummy_option" Type="string"/>
         </ReportConfig>
         <ReportConfig Name="impl_1_post_route_phys_opt_report_timing_summary_0" Spec="report_timing_summary" RunStep="post_route_phys_opt_design" Version="1" Minor="0">
@@ -451,7 +426,7 @@
         <ReportConfig Name="impl_1_bitstream_report_webtalk_0" Spec="" RunStep="write_bitstream" ReportFile="usage_statistics_webtalk.html">
           <ReportConfigOption Name="dummy_option" Type="string"/>
         </ReportConfig>
-        <ReportConfig Name="impl_1_bitstream_implementation_log_0" Spec="" RunStep="write_bitstream" ReportFile="vga_example.vdi">
+        <ReportConfig Name="impl_1_bitstream_implementation_log_0" Spec="" RunStep="write_bitstream" ReportFile="Whack_a_mole.vdi">
           <ReportConfigOption Name="dummy_option" Type="string"/>
         </ReportConfig>
       </ReportStrategy>

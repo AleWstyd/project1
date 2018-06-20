@@ -24,7 +24,9 @@
 module draw_rect_char
     # ( parameter
         X_UP_LEFT_CORNER = 0,
-        Y_UP_LEFT_CORNER = 0 
+        Y_UP_LEFT_CORNER = 0 ,
+        X_RECT_SIZE = 128,
+        Y_RECT_SIZE = 32
     )
     (  
     input wire pclk,
@@ -48,12 +50,12 @@ module draw_rect_char
     output reg [7:0] char_xy,
     output reg [3:0] char_line
     );
-//            localparam X_UP_LEFT_CORNER = 409;
-//            localparam Y_UP_LEFT_CORNER = 0;
-    localparam X_RECT_SIZE = 128;
-    localparam Y_RECT_SIZE = 16;
+    
+    
+    
+    
+    
     reg [11:0] x_up_left_corner_to_draw=0, y_up_left_corner_to_draw=0;
-   // localparam X = 0, Y=0;
     
     reg [10:0] hcount_in_1, hcount_in_2, hcount_in_3;
     reg hsync_in_1, hsync_in_2, hsync_in_3;
