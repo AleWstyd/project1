@@ -90,7 +90,7 @@ always @(posedge clk40) begin
    vsync_out <= 1'b0;
    rgb_out <=  12'b0;
    state <= START;
-   game_enable <= 0;
+   game_enable <= 1;
          end 
 
     else

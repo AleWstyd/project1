@@ -66,19 +66,19 @@ module game_module(
     
     localparam DELAY_1MS = 40_000;  // equals 40000  clock cycles, so for a 40MHz clock is a 1 ms delay
     
-    localparam    DELAY_SHOW_DECREASE = 30 * DELAY_1MS,     // time in ms 
-                  DELAY_WAIT_DECREASE = 20 * DELAY_1MS,
-                  DELAY_WAIT = 1000 * DELAY_1MS,            
-                  DELAY_SHOW = 1500 * DELAY_1MS,            // delay vaules for mole 1
-                  DELAY_SHOW_MIN = 700 * DELAY_1MS, 
+    localparam    DELAY_SHOW_DECREASE = 40 * DELAY_1MS,     // time in ms 
+                  DELAY_WAIT_DECREASE = 40 * DELAY_1MS,
+                  DELAY_WAIT = 1500 * DELAY_1MS,            
+                  DELAY_SHOW = 2000 * DELAY_1MS,            // delay vaules for mole 1
+                  DELAY_SHOW_MIN = 750 * DELAY_1MS, 
                   DELAY_WAIT_MIN = 400 * DELAY_1MS,
                   INIT_DELAY = 1500 * DELAY_1MS;
     
     
     localparam    DELAY_SHOW_DECREASE1 = 40 * DELAY_1MS,     // time in ms 
                   DELAY_WAIT_DECREASE1 = 40 * DELAY_1MS,
-                  DELAY_WAIT1 = 1500 * DELAY_1MS,            
-                  DELAY_SHOW1 = 2000 * DELAY_1MS,            // delay vaules for mole 2
+                  DELAY_WAIT1 = 2000 * DELAY_1MS,            
+                  DELAY_SHOW1 = 2500 * DELAY_1MS,            // delay vaules for mole 2
                   DELAY_SHOW_MIN1 = 700 * DELAY_1MS, 
                   DELAY_WAIT_MIN1 = 500 * DELAY_1MS,
                   INIT_DELAY1 = 3000 * DELAY_1MS;
@@ -326,7 +326,7 @@ module game_module(
   ////////////////////////////////////////////////////////
     wire [9:0] random_number;
     
-    mole_control my_moles_control (
+    mole_control my_random_number (
             .clk(clk40),
             .random_number(random_number)
          );

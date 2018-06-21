@@ -44,7 +44,7 @@ wire clk100;
 wire clk40;
 
 
-clk_wiz_0   clk_main 
+main_clock   clk_main 
  (
   // Clock out ports
   .clk100MHz(clk100),
@@ -53,7 +53,7 @@ clk_wiz_0   clk_main
   //.reset(rst),
   //.locked(locked),
  // Clock in ports
-  .clk(clk)
+  .clk_in1(clk)
  );
  
 ////////////////////////////////////////////////////////

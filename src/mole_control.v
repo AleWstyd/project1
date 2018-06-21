@@ -25,28 +25,17 @@ module mole_control(
     output reg [9:0] random_number
     );
     
-//------------------------------------------------------------------------------
-// local parameters
-//------------------------------------------------------------------------------    
-    localparam
-    OBJECT_WIDTH = 100;
-
-//------------------------------------------------------------------------------
-// local variables
-//------------------------------------------------------------------------------  
     reg [9:0] random_number_nxt, random_number_previous;
 
-//------------------------------------------------------------------------------
-// output register - without rst, so random number is even more random :)
-//------------------------------------------------------------------------------    
+
     always @(posedge clk) begin
         random_number <= random_number_nxt;
         random_number_previous <= random_number;
     end
        
     always @* begin   
-        if(random_number + random_number_previous > 600 - OBJECT_WIDTH)
-            random_number_nxt = random_number + random_number_previous - (600 - OBJECT_WIDTH);
+        if(random_number + random_number_previous > 500 )
+            random_number_nxt = random_number + random_number_previous - 500;
         else
             random_number_nxt = random_number + random_number_previous;
         if(random_number_nxt == 0)
